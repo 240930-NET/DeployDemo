@@ -22,10 +22,9 @@ builder.Services.AddSwaggerGen();
 
 //Configure our DBContext and Repos here
 
-// retrieve connection string from user secrets
-string connectionString = builder.Configuration["ConnectionStrings:Expenses"]; 
 //set up DbContext
-builder.Services.AddDbContext<BudgetContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<BudgetContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Expenses")));
 
 // Set up dependencies lifecycles
 builder.Services.AddScoped<IExpenseRepo, ExpenseRepo>();
