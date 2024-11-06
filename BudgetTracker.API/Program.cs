@@ -46,7 +46,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("/", () => "Hello!");
+app.MapGet("/", () => builder.Configuration["myenv"]);
 app.UseCors("name");
 app.UseHttpsRedirection();
 
